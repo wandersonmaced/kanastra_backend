@@ -41,4 +41,4 @@ class ChunkedUpload(models.Model):
 class ChunkedUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChunkedUpload
-        fields = ('id', 'file_uuid', 'file', 'file_name', 'chunk_qtd', 'chunk_idx', 'created_at')
+        fields = ['id', 'file_uuid', 'file', 'file_name', 'chunk_qtd', 'chunk_idx', 'created_at']

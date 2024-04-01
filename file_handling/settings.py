@@ -117,6 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8888',
 ]
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -153,5 +154,4 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'Kanastra Challenge',
     'DESCRIPTION': 'API documentation',
     'VERSION': '1.0.0',
-
 }
