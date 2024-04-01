@@ -4,7 +4,7 @@ import pandas as pd
 from file_handling.model.file_models import Debt
 
 class FileProcessingThread(threading.Thread):
-    semaphore = threading.Semaphore(os.environ.get("THREADS"))  # thread limiting
+    semaphore = threading.Semaphore(os.environ.get("THREADS", 4))  # thread limiting
 
     def __init__(self, file_path, chunk_size):
         super().__init__()
