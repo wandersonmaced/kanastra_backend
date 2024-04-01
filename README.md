@@ -20,3 +20,6 @@ This repository contains the backend solution for the Kanastra backend challenge
 - HTTP://localhost:8000
 5. Swagger interface is on
 - HTTP://localhost:8000/api/docs
+## Project
+- this project is the backend of this
+- https://github.com/wandersonmaced/kanastra_frontend/
