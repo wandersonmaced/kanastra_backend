@@ -2,8 +2,10 @@ from rest_framework.generics import ListAPIView
 from file_handling.model.file_models import Debt, DebtSerializer
 from rest_framework.pagination import PageNumberPagination
 
+"""
+    this function get debts with pagination
+"""
 
-#
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = 'page_size'

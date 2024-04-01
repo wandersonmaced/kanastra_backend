@@ -39,9 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'file_handling',
-
-    #my models
-    #'file_handling.model',
     #third party
     'corsheaders',
     'rest_framework',

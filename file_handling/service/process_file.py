@@ -2,6 +2,7 @@ import os
 import pandas as pd
 
 from file_handling.model.file_models import Debt, ChunkedUpload
+from file_handling.service.file_thread_processing import FileProcessingThread
 from file_handling.service.read_file_from_s3 import ReadFileFromS3
 from file_handling.settings import CSV_FILES_ROOT
 
@@ -9,7 +10,7 @@ from file_handling.settings import CSV_FILES_ROOT
 class ProcessFile:
 
     def __init__(self):
-        self.chunk_size = os.environ.get("CHUNK_SIZE", 10000)
+        self.chunk_size = os.environ.get("CHUNK_SIZE", 5000)
 
     def process_chunks(self, file_uuid):
         list_chunked_files = ChunkedUpload.objects.filter(file_uuid=file_uuid).order_by('chunk_idx')
@@ -31,27 +32,9 @@ class ProcessFile:
 
         return chunk_paths, output_file
 
-
-    def process_file_from_server(self, file_path):
-
-        for chunk in pd.read_csv(file_path, chunksize=self.chunk_size):
-
-            debts_to_create = []
-            for index, row in chunk.iterrows():
-
-                debt = Debt(
-                    name=row["name"],
-                    governmentId=row["governmentId"],
-                    email=row["email"],
-                    debtAmount=row["debtAmount"],
-                    debtDueDate=row["debtDueDate"],
-                    debtId=row["debtId"],
-                )
-                print(debt)
-                debts_to_create.append(debt)
-
-            Debt.objects.bulk_create(debts_to_create)
-
+    def multiprocess_file_from_server(self, file_path):
+        processing_thread = FileProcessingThread(file_path, self.chunk_size)
+        processing_thread.start()
 
     def process_file_from_s3(self, bucket_name, object_key):
 
