@@ -1,3 +1,4 @@
+import unittest
 from rest_framework.test import APITestCase, APIRequestFactory
 from rest_framework import status
 from unittest.mock import MagicMock
@@ -47,3 +48,6 @@ class TestDebtListView(APITestCase):
         response = self.view.get(request)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data['results']), 2)
+
+if __name__ == '__main__':
+    unittest.main()

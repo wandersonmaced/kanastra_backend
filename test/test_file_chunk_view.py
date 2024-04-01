@@ -1,3 +1,4 @@
+import unittest
 from rest_framework.test import APITestCase
 from rest_framework import status
 from unittest.mock import MagicMock
@@ -42,3 +43,6 @@ class TestFileChunkView(APITestCase):
         response = self.client.post('/files/upload', {}, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn('file_uuid', response.data)  # Check if the 'file_uuid' field is in the response data
+
+if __name__ == '__main__':
+    unittest.main()
