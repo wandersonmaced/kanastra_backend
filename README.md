@@ -2,6 +2,8 @@
 
 ## Overview
 This repository contains the backend solution for the Kanastra backend challenge. It is built using Django, PostgreSQL, and Docker.
+I use the own project to holds the file, but the in this cases is good to use s3 bucket to handle this files, so i write code to use boto3 library
+that is a better way to handle this storage of files
 
 ## Technologies Used
 - Django
